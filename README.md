@@ -4,9 +4,11 @@ Live Demo: [ADD VERCEL LINK HERE]
 
 ## Screenshots
 
-![Screenshot 1](screenshot1.png)
-![Screenshot 2](screenshot2.png)
-![Screenshot 3](screenshot3.png)
+![Product grid — all products loaded from FakeStoreAPI](screenshot1.png)
+
+![Live search — typing filters the grid in real-time](screenshot2.png)
+
+![Cart sidebar — items added, live total updating](screenshot3.png)
 
 ## About This Project
 
@@ -44,8 +46,8 @@ ShopFront is a small e-commerce product listing page I built as a portfolio proj
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/ecommerce-storefront.git
-cd ecommerce-storefront
+git clone https://github.com/AtulSharmx/Ecommerce-Storefront.git
+cd Ecommerce-Storefront
 
 # Install dependencies
 npm install
@@ -55,4 +57,3 @@ npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
-#
