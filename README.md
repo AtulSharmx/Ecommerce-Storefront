@@ -1,6 +1,6 @@
 # ShopFront — E-Commerce Storefront
 
-Live Demo: https://ecommerce-storefront-livid.vercel.app
+Live Demo: https://ecommerce-store-liart-delta.vercel.app/
 
 ## Screenshots
 
