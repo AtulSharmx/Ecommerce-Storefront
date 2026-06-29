@@ -1,7 +1,7 @@
 function SearchBar({ search, onSearch }) {
   return (
     <div className="relative">
-      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-4 h-4"
@@ -22,7 +22,7 @@ function SearchBar({ search, onSearch }) {
         value={search}
         onChange={(e) => onSearch(e.target.value)}
         placeholder="Search products..."
-        className="w-full pl-9 pr-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors text-sm"
+        className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition-colors text-sm"
       />
     </div>
   );

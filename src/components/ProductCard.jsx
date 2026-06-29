@@ -6,8 +6,8 @@ function ProductCard({ product }) {
   const inCart = cartItems.find((item) => item.id === product.id);
 
   return (
-    <div className="bg-gray-800 rounded-xl border border-gray-700/50 overflow-hidden flex flex-col hover:border-indigo-500/40 hover:shadow-lg hover:shadow-indigo-900/20 transition-all duration-200 group">
-      <div className="bg-white p-5 flex items-center justify-center h-48">
+    <div className="bg-white rounded-xl border border-slate-200 overflow-hidden flex flex-col hover:border-indigo-300 hover:shadow-md hover:shadow-indigo-100 transition-all duration-200 group">
+      <div className="bg-slate-50 p-5 flex items-center justify-center h-48">
         <img
           src={product.image}
           alt={product.title}
@@ -17,27 +17,27 @@ function ProductCard({ product }) {
       </div>
 
       <div className="p-4 flex flex-col flex-1">
-        <span className="text-xs text-indigo-400 capitalize font-medium mb-1">
+        <span className="text-xs text-indigo-500 capitalize font-medium mb-1">
           {product.category}
         </span>
-        <h3 className="text-gray-200 text-sm font-medium leading-snug line-clamp-2 flex-1">
+        <h3 className="text-slate-700 text-sm font-medium leading-snug line-clamp-2 flex-1">
           {product.title}
         </h3>
         <div className="flex items-center justify-between mt-3">
-          <span className="text-white font-bold text-lg">
+          <span className="text-slate-900 font-bold text-lg">
             ${product.price.toFixed(2)}
           </span>
-          <div className="flex items-center gap-1 text-yellow-400 text-xs">
+          <div className="flex items-center gap-1 text-yellow-500 text-xs">
             <span>★</span>
-            <span className="text-gray-400">{product.rating?.rate}</span>
-            <span className="text-gray-500">({product.rating?.count})</span>
+            <span className="text-slate-500">{product.rating?.rate}</span>
+            <span className="text-slate-400">({product.rating?.count})</span>
           </div>
         </div>
         <button
           onClick={() => handleAddToCart(product)}
           className={`mt-3 w-full py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
             inCart
-              ? "bg-indigo-600/30 text-indigo-300 border border-indigo-600/50 hover:bg-indigo-600/50"
+              ? "bg-indigo-50 text-indigo-600 border border-indigo-200 hover:bg-indigo-100"
               : "bg-indigo-600 hover:bg-indigo-500 text-white"
           }`}
         >

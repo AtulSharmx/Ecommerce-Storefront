@@ -14,21 +14,21 @@ function Cart({ isOpen, onClose }) {
     <>
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40"
+          className="fixed inset-0 bg-black/30 z-40"
           onClick={onClose}
         />
       )}
 
       <div
-        className={`fixed top-0 right-0 h-full w-80 bg-gray-900 shadow-2xl z-50 flex flex-col transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 flex flex-col transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between px-4 py-4 border-b border-gray-700">
-          <h2 className="text-lg font-semibold text-white">Your Cart</h2>
+        <div className="flex items-center justify-between px-4 py-4 border-b border-slate-200">
+          <h2 className="text-lg font-semibold text-slate-800">Your Cart</h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white text-xl transition-colors"
+            className="text-slate-400 hover:text-slate-700 text-xl transition-colors"
           >
             ✕
           </button>
@@ -36,17 +36,17 @@ function Cart({ isOpen, onClose }) {
 
         <div className="flex-1 overflow-y-auto px-4">
           {cartItems.length === 0 ? (
-            <p className="text-gray-400 text-center mt-12">Your cart is empty.</p>
+            <p className="text-slate-400 text-center mt-12">Your cart is empty.</p>
           ) : (
             cartItems.map((item) => <CartItem key={item.id} item={item} />)
           )}
         </div>
 
         {cartItems.length > 0 && (
-          <div className="px-4 py-4 border-t border-gray-700">
+          <div className="px-4 py-4 border-t border-slate-200">
             <div className="flex justify-between items-center mb-3">
-              <span className="text-gray-300">Total</span>
-              <span className="text-white font-bold text-lg">
+              <span className="text-slate-500">Total</span>
+              <span className="text-slate-900 font-bold text-lg">
                 ${total.toFixed(2)}
               </span>
             </div>

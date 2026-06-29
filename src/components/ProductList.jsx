@@ -6,7 +6,7 @@ function ProductList({ products, loading, error }) {
       <div className="flex items-center justify-center py-24">
         <div className="flex flex-col items-center gap-3">
           <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-          <p className="text-gray-400 text-sm">Loading products...</p>
+          <p className="text-slate-400 text-sm">Loading products...</p>
         </div>
       </div>
     );
@@ -17,8 +17,8 @@ function ProductList({ products, loading, error }) {
       <div className="flex items-center justify-center py-24">
         <div className="text-center">
           <p className="text-3xl mb-2">⚠️</p>
-          <p className="text-red-400 font-medium">Failed to load products.</p>
-          <p className="text-gray-500 text-sm mt-1">{error}</p>
+          <p className="text-red-500 font-medium">Failed to load products.</p>
+          <p className="text-slate-400 text-sm mt-1">{error}</p>
         </div>
       </div>
     );
@@ -29,8 +29,8 @@ function ProductList({ products, loading, error }) {
       <div className="flex items-center justify-center py-24">
         <div className="text-center">
           <p className="text-3xl mb-2">🔍</p>
-          <p className="text-gray-400">No products found.</p>
-          <p className="text-gray-500 text-sm mt-1">Try adjusting your filters.</p>
+          <p className="text-slate-500">No products found.</p>
+          <p className="text-slate-400 text-sm mt-1">Try adjusting your filters.</p>
         </div>
       </div>
     );

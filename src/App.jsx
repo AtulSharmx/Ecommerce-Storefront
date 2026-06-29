@@ -58,20 +58,20 @@ function App() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-950">
+    <div className="min-h-screen bg-slate-50">
       <Navbar onCartClick={() => setCartOpen(true)} />
 
       <main className="max-w-6xl mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-1">
+          <h1 className="text-3xl font-bold text-slate-800 mb-1">
             All Products
           </h1>
-          <p className="text-gray-400 text-sm">
+          <p className="text-slate-500 text-sm">
             {loading ? "" : `${filteredProducts.length} product${filteredProducts.length !== 1 ? "s" : ""} found`}
           </p>
         </div>
 
-        <div className="bg-gray-800/50 rounded-xl border border-gray-700/40 p-4 mb-8 flex flex-col gap-4">
+        <div className="bg-white rounded-xl border border-slate-200 p-4 mb-8 flex flex-col gap-4 shadow-sm">
           <SearchBar search={search} onSearch={setSearch} />
           <Filters
             categories={categories}

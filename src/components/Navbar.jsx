@@ -5,23 +5,23 @@ function Navbar({ onCartClick }) {
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <nav className="sticky top-0 z-30 bg-gray-900/80 backdrop-blur border-b border-gray-700/60">
+    <nav className="sticky top-0 z-30 bg-white/80 backdrop-blur border-b border-slate-200 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-2xl">🛍️</span>
-          <span className="font-bold text-white text-xl tracking-tight">
+          <span className="font-bold text-slate-800 text-xl tracking-tight">
             ShopFront
           </span>
         </div>
 
         <button
           onClick={onCartClick}
-          className="relative p-2 rounded-full hover:bg-gray-700 transition-colors"
+          className="relative p-2 rounded-full hover:bg-slate-100 transition-colors"
           aria-label="Open cart"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6 text-gray-200"
+            className="w-6 h-6 text-slate-600"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
