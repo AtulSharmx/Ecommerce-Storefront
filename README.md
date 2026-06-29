@@ -1,6 +1,6 @@
 # ShopFront — E-Commerce Storefront
 
-Live Demo: [ADD VERCEL LINK HERE]
+Live Demo: https://ecommerce-storefront-livid.vercel.app
 
 ## Screenshots
 
