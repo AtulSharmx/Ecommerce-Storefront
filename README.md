@@ -2,13 +2,6 @@
 
 Live Demo: https://ecommerce-store-liart-delta.vercel.app/
 
-## Screenshots
-
-![Product grid — all products loaded from FakeStoreAPI](screenshot1.png)
-
-![Live search — typing filters the grid in real-time](screenshot2.png)
-
-![Cart sidebar — items added, live total updating](screenshot3.png)
 
 ## About This Project
 
