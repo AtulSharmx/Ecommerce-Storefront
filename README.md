@@ -1,4 +1,4 @@
-# ShopSimple 🛒
+# ShopSimple
 
 ShopSimple is a minimal, frontend-only e-commerce store I built while practicing modern web development. 
 
