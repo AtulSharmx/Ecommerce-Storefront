@@ -1,5 +1,12 @@
-// --- Configuration & State ---
+// FakeStore quotes prices in USD; this storefront shows INR.
 const USD_TO_INR = 84;
+
+// Product titles come from a third-party API, so they are never trusted as markup.
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
 let products = [];
 let categories = [];
 let cart = [];
@@ -7,7 +14,6 @@ let activeCat = 'all';
 let maxPrice = 1000;
 let searchText = '';
 
-// --- DOM Elements ---
 const grid = document.getElementById('grid');
 const catBox = document.getElementById('categories');
 const statusText = document.getElementById('status');
@@ -20,12 +26,10 @@ const priceInput = document.getElementById('price');
 const priceVal = document.getElementById('price-val');
 const searchInput = document.getElementById('search');
 
-// --- Initialization ---
 async function init() {
-  loadCart(); // Load saved cart from localStorage
+  loadCart();
 
   try {
-    // Fetch data from FakeStore API
     const [prodRes, catRes] = await Promise.all([
       fetch("https://fakestoreapi.com/products"),
       fetch("https://fakestoreapi.com/products/categories")
@@ -34,7 +38,6 @@ async function init() {
     products = await prodRes.json();
     categories = await catRes.json();
     
-    // Set max price slider dynamically based on highest product price
     maxPrice = Math.max(...products.map(p => Math.ceil(p.price * USD_TO_INR)));
     priceInput.max = maxPrice;
     priceInput.value = maxPrice;
@@ -47,9 +50,7 @@ async function init() {
   }
 }
 
-// --- Render Products ---
 function renderProducts() {
-  // Filter products based on search, category, and price
   const filtered = products.filter(p => {
     const price = Math.ceil(p.price * USD_TO_INR);
     const matchCat = activeCat === 'all' || p.category === activeCat;
@@ -64,16 +65,16 @@ function renderProducts() {
     return;
   }
 
-  // Generate HTML for each product using map() and template literals
   grid.innerHTML = filtered.map(p => {
     const price = Math.ceil(p.price * USD_TO_INR);
     return `
       <div class="card">
         <div class="img-box">
-          <img src="${p.image}" alt="${p.title}" loading="lazy">
+          <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed'); this.remove();">
         </div>
         <div class="card-content">
-          <h3>${p.title}</h3>
+          <h3>${escapeHtml(p.title)}</h3>
           <div class="card-footer">
             <p>₹${price.toLocaleString("en-IN")}</p>
             <button onclick="addToCart(${p.id}, ${price})">Add</button>
@@ -84,15 +85,12 @@ function renderProducts() {
   }).join('');
 }
 
-// --- Render Categories ---
 function renderCategories() {
-  // Generate HTML for category buttons
   catBox.innerHTML = `
     <button class="active" data-cat="all">All</button>
     ${categories.map(c => `<button data-cat="${c}">${c}</button>`).join('')}
   `;
   
-  // Add click events to category buttons
   catBox.querySelectorAll('button').forEach(btn => {
     btn.onclick = () => {
       catBox.querySelector('.active').classList.remove('active');
@@ -103,7 +101,6 @@ function renderCategories() {
   });
 }
 
-// --- Cart Logic ---
 window.addToCart = function(id, price) {
   const item = cart.find(i => i.id === id);
   if (item) {
@@ -118,6 +115,7 @@ window.addToCart = function(id, price) {
 
 window.updateQty = function(id, change) {
   const item = cart.find(i => i.id === id);
+  if (!item) return;
   item.qty += change;
   if (item.qty <= 0) {
     cart = cart.filter(i => i.id !== id);
@@ -137,14 +135,12 @@ function loadCart() {
 }
 
 function renderCart() {
-  // Calculate totals
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
   const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
   
   cartCount.textContent = totalItems;
   cartTotal.textContent = `₹${totalPrice.toLocaleString("en-IN")}`;
 
-  // Generate cart items HTML
   if (cart.length === 0) {
     cartItems.innerHTML = '<p class="cart-empty">Your cart is empty</p>';
     return;
@@ -152,9 +148,10 @@ function renderCart() {
 
   cartItems.innerHTML = cart.map(item => `
     <div class="cart-item">
-      <img src="${item.image}" alt="${item.title}">
+      <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}"
+           onerror="this.classList.add('img-failed');">
       <div class="cart-item-details">
-        <h4>${item.title}</h4>
+        <h4>${escapeHtml(item.title)}</h4>
         <p>₹${(item.price * item.qty).toLocaleString("en-IN")}</p>
         <div class="qty-controls">
           <button onclick="updateQty(${item.id}, -1)">-</button>
@@ -166,7 +163,6 @@ function renderCart() {
   `).join('');
 }
 
-// --- UI Event Listeners ---
 searchInput.oninput = (e) => { 
   searchText = e.target.value; 
   renderProducts(); 
@@ -178,12 +174,13 @@ priceInput.oninput = (e) => {
   renderProducts(); 
 };
 
-// Modal controls
 document.getElementById('cart-btn').onclick = () => cartModal.classList.add('visible');
 document.getElementById('close-cart').onclick = () => cartModal.classList.remove('visible');
 cartModal.onclick = (e) => { if (e.target === cartModal) cartModal.classList.remove('visible'); };
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') cartModal.classList.remove('visible');
+});
 
-// Checkout
 document.getElementById('checkout').onclick = () => {
   if (cart.length === 0) return showToast("Cart is empty!");
   cart = []; 
@@ -192,12 +189,10 @@ document.getElementById('checkout').onclick = () => {
   showToast("Order Placed Successfully!");
 };
 
-// Toast message
 function showToast(msg) {
   toast.textContent = msg;
   toast.classList.add('visible');
   setTimeout(() => toast.classList.remove('visible'), 2500);
 }
 
-// Run app
 init();

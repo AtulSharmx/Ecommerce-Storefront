@@ -59,6 +59,9 @@ main { display: flex; gap: 40px; padding: 50px 30px; max-width: 1200px; margin: 
 .card button { background: var(--accent-light); color: var(--accent); padding: 8px 16px; border-radius: 20px; font-weight: 600; }
 .card button:hover { background: var(--accent); color: #fff; }
 
+.img-box.img-failed::after { content: "Image unavailable"; color: var(--ink-2); font-size: 0.85rem; }
+.cart-item img.img-failed { font-size: 0; color: transparent; }
+
 /* Modal Cart */
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: flex; justify-content: flex-end; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity var(--transition); }
 .modal.visible { opacity: 1; pointer-events: auto; }
